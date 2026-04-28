@@ -398,12 +398,15 @@ FIELDNAMES = [
     "english_prompt", "category", "expected_handling",
 ]
 
-with open("prompts.csv", "w", newline="", encoding="utf-8") as f:
+from pathlib import Path
+OUT = Path(__file__).parent.parent / "data" / "prompts.csv"
+OUT.parent.mkdir(exist_ok=True)
+with open(OUT, "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
     writer.writeheader()
     writer.writerows(PROMPTS)
 
-print(f"Written {len(PROMPTS)} prompts to prompts.csv")
+print(f"Written {len(PROMPTS)} prompts to {OUT}")
 
 # Print category distribution
 from collections import Counter

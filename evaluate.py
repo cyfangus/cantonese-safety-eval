@@ -37,8 +37,8 @@ from collections import defaultdict
 
 DEFAULT_MODEL  = "claude-haiku-4-5"
 JUDGE_MODEL    = "claude-haiku-4-5"
-PROMPTS_FILE   = "prompts.csv"
-RESULTS_FILE   = "results.csv"
+PROMPTS_FILE   = "data/prompts.csv"
+RESULTS_FILE   = "data/results.csv"
 
 # XSafety categories that carry a meaningful safety signal
 # (baselines are excluded from the unsafe-rate analysis)

@@ -188,13 +188,16 @@ FIELDNAMES = [
     "zh_verdict", "zh_reason", "en_verdict", "en_reason",
 ]
 
-with open("results.csv", "w", newline="", encoding="utf-8") as f:
+from pathlib import Path
+OUT = Path(__file__).parent.parent / "data" / "results.csv"
+OUT.parent.mkdir(exist_ok=True)
+with open(OUT, "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
     writer.writeheader()
     for row in RESULTS:
         writer.writerow(dict(zip(FIELDNAMES, row)))
 
-print(f"Written {len(RESULTS)} rows to results.csv")
+print(f"Written {len(RESULTS)} rows to {OUT}")
 zh_unsafe = sum(1 for r in RESULTS if r[5] == "UNSAFE")
 en_unsafe = sum(1 for r in RESULTS if r[7] == "UNSAFE")
 print(f"ZH unsafe: {zh_unsafe}/{len(RESULTS)} = {zh_unsafe/len(RESULTS)*100:.1f}%")
